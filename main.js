@@ -112,7 +112,8 @@ const playKey = (key) => {
   osc.connect(noteGainNode);
   osc.type='triangle';
 
-  const freq = getHz(keys[key].note, (keys[key].octaveOffset || 0) + 3);
+  const freq = getHz(keys[key].note, (keys[key].octaveOffset || 0) + Number(document.getElementById('octave').value));
+  console.log(freq);
 
   if(Number.isFinite(freq)) {
     osc.frequency.value = freq;
@@ -171,3 +172,4 @@ for (const [key, { element }] of Object.entries(keys)) {
 document.addEventListener("mouseup", () => {
   stopKey(clickedKey);
 });
+
